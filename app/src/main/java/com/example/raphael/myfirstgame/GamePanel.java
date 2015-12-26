@@ -3,6 +3,7 @@ package com.example.raphael.myfirstgame;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -66,22 +67,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public boolean onTouchEvent(MotionEvent event) {
         // acao ao toque na tela, caso toque embaixo o cara anda pra direita
         // problema: precisa tocar 3 vezes pra ele andar e nao da pra parar ele
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            if(!player.getPlaying()){
-                player.setPlaying(true);
-            } else {
+
+        if(!player.getPlaying()){
+            player.setPlaying(true);
+        } else {
+            if(event.getX() > (GamePanel.WIDTH/2) + 50) {
                 player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.oborodireita), 100, 77, 8);
-                player.setUp(true);
+                player.setRight(true);
+            } else {
+                player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.oboroesquerda), 100, 77, 8);
+                player.setLeft(true);
             }
-
-            return true;
         }
 
-        // isse serve pra nada nesse jogo ainda, no do helicoptero era se tocar em cima dele o helicoptero cai mais rapido
-        if(event.getAction() == MotionEvent.ACTION_UP){
-            player.setUp(false);
-            return false;
-        }
         /*if(event.getAction() == MotionEvent.EDGE_LEFT) {
             if(!player.getPlaying()){
                 player.setPlaying(true);

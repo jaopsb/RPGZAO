@@ -61,7 +61,6 @@ public class MainThread extends Thread {
                 avarageFPS = 1000/((totalTime/frameCount)/1000000);
                 frameCount = 0;
                 totalTime = 0;
-                System.out.println(avarageFPS);
             }
         }
     }

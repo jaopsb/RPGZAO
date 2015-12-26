@@ -65,8 +65,6 @@ public class Player extends GameObject{
 
         if(up){
             dy = (int) (dya -= 1.1);
-        } else {
-            dy = (int) (dya += 1.1);
         }
 
         if(down){
@@ -80,9 +78,6 @@ public class Player extends GameObject{
         if(left){
             dx = (int) (dxa += 1.1);
         }
-
-        if(dy > 14) dy = 14;
-        if(dy < -14) dy = -14;
     }
 
     public void draw (Canvas canvas) {
